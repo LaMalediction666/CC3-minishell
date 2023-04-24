@@ -6,7 +6,7 @@
 /*   By: jmoutous <jmoutous@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:52:20 by jmoutous          #+#    #+#             */
-/*   Updated: 2023/04/12 16:11:24 by jmoutous         ###   ########lyon.fr   */
+/*   Updated: 2023/04/14 18:12:57 by jmoutous         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,7 @@ int	ft_builtin(t_data *data, char **command)
 		return (ft_builtin_export(data, command), 1);
 	if (ft_strncmp(command[0], "unset", 6) == 0)
 		return (ft_builtin_unset(data, command), 1);
+	// if (command[0][0] == '/')
+	// 	return (ft_builtin_slash(data, command[0]), 1);
 	return (0);
 }

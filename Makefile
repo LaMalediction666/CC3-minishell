@@ -37,6 +37,7 @@ LST_SRC =	main.c					\
 			process/input.c			\
 			process/output.c		\
 			process/process.c		\
+			process/here_doc.c		\
 			process/get_input.c		\
 			process/get_output.c	\
 			process/get_arg_path.c	\
