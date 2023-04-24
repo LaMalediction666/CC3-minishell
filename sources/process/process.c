@@ -6,7 +6,7 @@
 /*   By: jmoutous <jmoutous@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 13:36:55 by jmoutous          #+#    #+#             */
-/*   Updated: 2023/04/24 13:49:16 by jmoutous         ###   ########lyon.fr   */
+/*   Updated: 2023/04/14 13:32:03 by jmoutous         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,11 @@ static void	ft_pipe_free(t_data *data)
 	data->pipes = NULL;
 }
 
-static void	ft_wait_child(t_data *data, int i)
-{
-	int	status;
-
-	g_exitcode += 2;
-	while (--i >= 0)
-	{
-		waitpid(-1, &status, 0);
-		if (WIFEXITED(status))
-			data->exit_code = WEXITSTATUS(status);
-		else if (WIFSIGNALED(status))
-		{
-			data->exit_code = WTERMSIG(status) + 128;
-			if (data->exit_code == 131)
-				printf("\b\bQuit\n");
-		}
-	}
-	g_exitcode -= 2;
-}
-
 static void	ft_process(t_data *data)
 {
 	int	i;
 	int	pids;
+	int	status;
 
 	ft_pipe_init(data);
 	i = -1;
@@ -80,7 +61,16 @@ static void	ft_process(t_data *data)
 			ft_child(data, data->pipes, i);
 	}
 	ft_close_fds(data, NULL);
-	ft_wait_child(data, i);
+	g_exitcode += 2;
+	while (--i >= 0)
+	{
+		waitpid(-1, &status, 0);
+		if (WIFEXITED(status))
+			data->exit_code = WEXITSTATUS(status);
+		else if (WIFSIGNALED(status))
+			data->exit_code = WTERMSIG(status) + 128;
+	}
+	g_exitcode -= 2;
 	ft_pipe_free(data);
 }
 

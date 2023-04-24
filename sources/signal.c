@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoutous <jmoutous@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:17:37 by mvogel            #+#    #+#             */
-/*   Updated: 2023/04/24 14:20:54 by jmoutous         ###   ########lyon.fr   */
+/*   Updated: 2023/04/14 14:21:17 by mehdidesmar      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	signal_handler(int signum)
 	{
 		if (g_exitcode != 1)
 			g_exitcode += 1;
-		// printf("\n");
-		ioctl(STDIN_FILENO, TIOCSTI, "\n");
-		rl_replace_line("", 0);
+		// ioctl(STDIN_FILENO, TIOCSTI, "\n");
+		printf("\n");
 		rl_on_new_line();
-		//rl_redisplay();
+		rl_replace_line("", 0);
+		rl_redisplay();
 	}
 }
 
@@ -44,22 +44,6 @@ void	input_signal(struct sigaction sign)
 	sigaction(SIGINT, &sign, NULL);
 	sigaction(SIGQUIT, &sign, NULL);
 }
-
-// void	sig_handler_child(int signum)
-// {
-// 	if (signum == SIGINT)
-// 		g_exitcode = 1;
-// }
-
-// void	sig_init(void (*handler)(int))
-// {
-// 	struct sigaction	act;
-
-// 	act.sa_flags = SA_RESTART;
-// 	act.sa_handler = handler;
-// 	sigaction(SIGINT, &act, NULL);
-// 	sigaction(SIGQUIT, &act, NULL);
-// }
 
 // void	exec_ctrl_c()
 // {

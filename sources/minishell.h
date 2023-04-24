@@ -6,7 +6,7 @@
 /*   By: jmoutous <jmoutous@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 11:23:19 by jmoutous          #+#    #+#             */
-/*   Updated: 2023/04/24 14:01:51 by jmoutous         ###   ########lyon.fr   */
+/*   Updated: 2023/04/14 13:58:25 by jmoutous         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_data
 	t_envp	*envp;
 	char	**envp_tab;
 	int		**pipes;
-	int		here_doc_fd[2];
+	int		*here_doc_fd;
 	int		nb_cmd;
 	int		exit_code;
 }				t_data;
@@ -91,7 +91,6 @@ char		**ft_split_var(t_data *data, char *var);
 void		ft_update_envptab(t_data *data);
 int			ft_inredic_count(char **tab);
 int			ft_outredic_count(char **tab);
-void		ft_input_heredoc(t_data *data, char *limiter, int last_redir);
 char		**ft_redirection(t_data *data, int i);
 
 void		ft_cmd(t_data *data);
@@ -101,7 +100,6 @@ char		*ft_getenv(t_envp *envp, char *variable);
 int			ft_builtin(t_data *data, char **command);
 void		ft_builtin_cd(t_data *data, char **command);
 void		ft_builtin_exit(t_data *data, char **command);
-void		ft_builtin_slash(t_data *data, char *directory);
 void		ft_check_envarg(t_data *data, char **command);
 void		get_rediction(t_data *data, int i);
 void		ft_extract_outputredir(t_data *data, t_pipeline *pipe);

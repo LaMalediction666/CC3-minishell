@@ -6,7 +6,7 @@
 /*   By: jmoutous <jmoutous@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 13:37:42 by jmoutous          #+#    #+#             */
-/*   Updated: 2023/04/24 13:53:45 by jmoutous         ###   ########lyon.fr   */
+/*   Updated: 2023/04/14 12:33:48 by jmoutous         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_data_init(t_data *data)
 	data->nb_cmd = 0;
 	data->pipes = NULL;
 	data->cmd = NULL;
+	data->here_doc_fd = NULL;
 	data->exit_code = 0;
 	ft_envp(data);
 	data->envp_tab = ft_lst_to_tabtab(data, data->envp);

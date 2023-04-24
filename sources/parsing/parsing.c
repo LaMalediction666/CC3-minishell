@@ -6,7 +6,7 @@
 /*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:15:10 by mehdidesmar       #+#    #+#             */
-/*   Updated: 2023/04/14 14:05:23 by mehdidesmar      ###   ########lyon.fr   */
+/*   Updated: 2023/04/14 16:16:46 by mehdidesmar      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ int	parsing(t_data *data, char *input)
 	pipe_tab = NULL;
 	pipe_tab = create_tab(pipe_tab, input, nb_p);
 	// print_tab(pipe_tab);
-	// dollar(data, pipe_tab);
+	dollar(data, pipe_tab);
+	print_tab(pipe_tab);
 	split_tab(&data->cmd, pipe_tab);
 	// print_chain(data);
 	return (0);

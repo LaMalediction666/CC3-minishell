@@ -6,7 +6,7 @@
 /*   By: jmoutous <jmoutous@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:06:47 by jmoutous          #+#    #+#             */
-/*   Updated: 2023/04/14 15:56:52 by jmoutous         ###   ########lyon.fr   */
+/*   Updated: 2023/04/12 17:55:43 by jmoutous         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ void	ft_print_export(t_data *data)
 		if (ft_strncmp("_", tmp->variable, 2) != 0)
 		{
 			printf("declare -x ");
-			printf("%s", tmp->variable);
+			printf("%s=", tmp->variable);
 			if (tmp->value)
-				printf("=\"%s\"\n", tmp->value);
-			else if (tmp->value == NULL)
-				printf("\n");
+				printf("\"%s\"\n", tmp->value);
 			else
 				printf("\"\"\n");
 		}
